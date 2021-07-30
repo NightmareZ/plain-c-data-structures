@@ -45,3 +45,16 @@ Allocate and free item:
 SingleLinkedList_Add(list, (int*)malloc(sizeof(int)));
 SingleLinkedList_Foreach(list, free);
 ```
+
+Insert item:
+```
+int a = 1;
+int b = 2;
+int c = 3;
+
+SingleLinkedList* list = SingleLinkedList_Create();
+SingleLinkedListNode* node = SingleLinkedList_Add(list, &a);
+SingleLinkedList_Add(list, &b);
+
+SingleLinkedList_InsertAt(node, &c); // result: 1, 3, 2
+```

@@ -108,3 +108,18 @@ void* SingleLinkedList_Remove(SingleLinkedList* list)
 	list->tail = current;
 	return value;
 }
+
+SingleLinkedListNode* SingleLinkedList_InsertAt(SingleLinkedListNode* target, void* value)
+{
+	SingleLinkedListNode* node = malloc(sizeof(SingleLinkedListNode));
+
+	if (!node)
+	{
+		return 0;
+	}
+
+	node->next = target->next;
+	node->value = value;
+	target->next = node;
+	return node;
+}

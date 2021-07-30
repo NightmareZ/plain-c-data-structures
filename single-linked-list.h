@@ -16,4 +16,6 @@ extern void SingleLinkedList_Foreach(SingleLinkedList*, void (*)(void*));
 extern SingleLinkedListNode* SingleLinkedList_Add(SingleLinkedList*, void*);
 extern void* SingleLinkedList_Remove(SingleLinkedList*);
 
+extern SingleLinkedListNode* SingleLinkedList_InsertAt(SingleLinkedListNode*, void*);
+
 #endif
