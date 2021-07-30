@@ -47,6 +47,17 @@ void DoubleLinkedList_Foreach(DoubleLinkedList* list, void (*callback)(void* val
 	}
 }
 
+void DoubleLinkedList_ForeachReverse(DoubleLinkedList* list, void (*callback)(void* value))
+{
+	DoubleLinkedListNode* current = list->tail;
+
+	while (current)
+	{
+		callback(current->value);
+		current = current->prev;
+	}
+}
+
 DoubleLinkedListNode* DoubleLinkedList_Add(DoubleLinkedList* list, void* value)
 {
 	DoubleLinkedListNode* node = malloc(sizeof(DoubleLinkedListNode));

@@ -81,6 +81,7 @@ DoubleLinkedList_Remove(list);
 Iterate by list:
 ```C
 DoubleLinkedList_Foreach(list, callback);
+DoubleLinkedList_ForeachReverse(list, callback);
 ```
 
 Elements count:

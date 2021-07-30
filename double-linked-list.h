@@ -12,6 +12,7 @@ extern DoubleLinkedList* DoubleLinkedList_Create();
 extern void DoubleLinkedList_Delete(DoubleLinkedList*);
 
 extern void DoubleLinkedList_Foreach(DoubleLinkedList*, void (*)(void*));
+extern void DoubleLinkedList_ForeachReverse(DoubleLinkedList*, void (*)(void*));
 
 extern DoubleLinkedListNode* DoubleLinkedList_Add(DoubleLinkedList*, void*);
 extern void* DoubleLinkedList_Remove(DoubleLinkedList*);
