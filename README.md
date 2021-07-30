@@ -88,3 +88,26 @@ Elements count:
 ```C
 DoubleLinkedList_Count(list);
 ```
+
+## Stack ##
+
+Create and delete stack objects:
+```C
+DoubleLinkedList* stack = Stack_Create();
+Stack_Delete(stack);
+```
+
+Push and pop elements:
+```C
+int a = 1;
+int b = 2;
+
+Stack_Push(stack, &a);
+Stack_Push(stack, &b);
+int c = *((int*)Stack_Pop(stack));
+```
+
+Elements count:
+```C
+Stack_Count(stack);
+```
