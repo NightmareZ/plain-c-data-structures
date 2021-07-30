@@ -18,4 +18,6 @@ extern void* SingleLinkedList_Remove(SingleLinkedList*);
 
 extern SingleLinkedListNode* SingleLinkedList_InsertAt(SingleLinkedListNode*, void*);
 
+extern int SingleLinkedList_Count(SingleLinkedList*);
+
 #endif

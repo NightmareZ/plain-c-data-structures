@@ -1,30 +1,30 @@
-#include "single-linked-list.h"
+#include "double-linked-list.h"
 
 #include <stdlib.h>
 
-SingleLinkedList* SingleLinkedList_Create()
+DoubleLinkedList* DoubleLinkedList_Create()
 {
-	SingleLinkedList* list = malloc(sizeof(SingleLinkedList));
+	DoubleLinkedList* list = malloc(sizeof(DoubleLinkedList));
 
 	if (!list)
 	{
 		return 0;
 	}
-	
+
 	list->head = 0;
 	list->tail = 0;
 
 	return list;
 }
 
-void SingleLinkedList_Delete(SingleLinkedList* list)
+void DoubleLinkedList_Delete(DoubleLinkedList* list)
 {
 	if (!list || !list->head)
 	{
 		return;
 	}
 
-	SingleLinkedListNode* next;
+	DoubleLinkedListNode* next;
 
 	do
 	{
@@ -36,9 +36,9 @@ void SingleLinkedList_Delete(SingleLinkedList* list)
 	list->tail = 0;
 }
 
-void SingleLinkedList_Foreach(SingleLinkedList* list, void (*callback)(void* value))
+void DoubleLinkedList_Foreach(DoubleLinkedList* list, void (*callback)(void* value))
 {
-	SingleLinkedListNode* current = list->head;
+	DoubleLinkedListNode* current = list->head;
 
 	while (current)
 	{
@@ -47,9 +47,9 @@ void SingleLinkedList_Foreach(SingleLinkedList* list, void (*callback)(void* val
 	}
 }
 
-SingleLinkedListNode* SingleLinkedList_Add(SingleLinkedList* list, void* value)
+DoubleLinkedListNode* DoubleLinkedList_Add(DoubleLinkedList* list, void* value)
 {
-	SingleLinkedListNode* node = malloc(sizeof(SingleLinkedListNode));
+	DoubleLinkedListNode* node = malloc(sizeof(DoubleLinkedListNode));
 
 	if (!node)
 	{
@@ -62,9 +62,11 @@ SingleLinkedListNode* SingleLinkedList_Add(SingleLinkedList* list, void* value)
 	if (!list->tail)
 	{
 		list->head = list->tail = node;
+		node->prev = 0;
 	}
 	else
 	{
+		node->prev = list->tail;
 		list->tail->next = node;
 		list->tail = list->tail->next;
 
@@ -77,7 +79,7 @@ SingleLinkedListNode* SingleLinkedList_Add(SingleLinkedList* list, void* value)
 	return node;
 }
 
-void* SingleLinkedList_Remove(SingleLinkedList* list)
+void* DoubleLinkedList_Remove(DoubleLinkedList* list)
 {
 	if (!list->tail || !list->head)
 	{
@@ -95,7 +97,7 @@ void* SingleLinkedList_Remove(SingleLinkedList* list)
 		return value;
 	}
 
-	SingleLinkedListNode* current = list->head;
+	DoubleLinkedListNode* current = list->head;
 
 	while (current->next != list->tail)
 	{
@@ -109,9 +111,9 @@ void* SingleLinkedList_Remove(SingleLinkedList* list)
 	return value;
 }
 
-SingleLinkedListNode* SingleLinkedList_InsertAt(SingleLinkedListNode* target, void* value)
+DoubleLinkedListNode* DoubleLinkedList_InsertAt(DoubleLinkedListNode* target, void* value)
 {
-	SingleLinkedListNode* node = malloc(sizeof(SingleLinkedListNode));
+	DoubleLinkedListNode* node = malloc(sizeof(DoubleLinkedListNode));
 
 	if (!node)
 	{
@@ -119,15 +121,22 @@ SingleLinkedListNode* SingleLinkedList_InsertAt(SingleLinkedListNode* target, vo
 	}
 
 	node->next = target->next;
+	node->prev = target;
 	node->value = value;
+
+	if (target->next)
+	{
+		target->next->prev = node;
+	}
+
 	target->next = node;
 	return node;
 }
 
-int SingleLinkedList_Count(SingleLinkedList* list)
+int DoubleLinkedList_Count(DoubleLinkedList* list)
 {
 	int count = 0;
-	SingleLinkedListNode* current = list->head;
+	DoubleLinkedListNode* current = list->head;
 
 	while (current)
 	{

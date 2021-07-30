@@ -2,20 +2,20 @@
 
 ## Single Linked List ##
 
- Create and delete list object:
- ```
- SingleLinkedList* list = SingleLinkedList_Create();
- SingleLinkedList_Delete(list);
- ```
+Create and delete list object:
+```C
+SingleLinkedList* list = SingleLinkedList_Create();
+SingleLinkedList_Delete(list);
+```
  
 Add and remove element to/from list tail:
-```
+```C
 SingleLinkedList_Add(list, &a);
 SingleLinkedList_Remove(list);
 ```
 
 Iterate by list:
-```
+```C
 void callback(void* value)
 {
     int integer = *((int*)value);
@@ -41,13 +41,13 @@ int main()
 ```
 
 Allocate and free item:
-```
+```C
 SingleLinkedList_Add(list, (int*)malloc(sizeof(int)));
 SingleLinkedList_Foreach(list, free);
 ```
 
 Insert item:
-```
+```C
 int a = 1;
 int b = 2;
 int c = 3;
@@ -57,4 +57,33 @@ SingleLinkedListNode* node = SingleLinkedList_Add(list, &a);
 SingleLinkedList_Add(list, &b);
 
 SingleLinkedList_InsertAt(node, &c); // result: 1, 3, 2
+```
+
+Elements count:
+```C
+SingleLinkedList_Count(list);
+```
+
+## Double Linked List ##
+
+Create and delete list object:
+```C
+DoubleLinkedList* list = DoubleLinkedList_Create();
+DoubleLinkedList_Delete(list);
+```
+
+Add and remove element to/from list tail:
+```C
+DoubleLinkedList_Add(list, &a);
+DoubleLinkedList_Remove(list);
+```
+
+Iterate by list:
+```C
+DoubleLinkedList_Foreach(list, callback);
+```
+
+Elements count:
+```C
+DoubleLinkedList_Count(list);
 ```
